@@ -11,6 +11,20 @@ import matplotlib.pyplot as plt
 df = pd.read_csv('DATA_VIS_PROJECT_CSV.csv', index_col='day')
 #print(df)
 
+fig, ax1 = plt.subplots()
+plt.title('daily_completion vs time spent in department')
+ax1.set_ylabel('completion %')
+ax1.set_xlabel('day')
+days = df.index
+completion = df.dailyCPer
+ax1.bar(days, completion)
+
+ax2 = ax1.twinx()
+ax2.set_ylabel('time in dept')
+time = df.deptTime
+ax2.plot(days, time, color='orange')
+plt.savefig('dailyComp_deptTime.png')
+
 """
     Is there a noticeable correlation between time spent outside of my
     department and mood?
